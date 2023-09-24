@@ -15,12 +15,11 @@ signinForm.addEventListener('submit', (event) => {
     xhr.responseType = 'json';
     xhr.send(formData);
     xhr.onload = function() {
-            let response = xhr.response;
-            if (response.success) {
+            if (xhr.response.success) {
                 signin.classList.remove('signin_active');
                 welcome.classList.add('welcome_active');
-                localStorage.setItem('user_id', response.user_id);
-                userId.textContent = response.user_id;
+                localStorage.setItem('user_id', xhr.response.user_id);
+                userId.textContent = xhr.response.user_id;
                 console.log(localStorage);
             } else {
                 alert('Неверный логин/пароль');
